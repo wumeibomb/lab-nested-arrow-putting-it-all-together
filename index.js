@@ -1,38 +1,43 @@
-function createLoginTracker(userInfo) {
-  const userInput = {
-  username: "l1Scary",
-  password: "l30PARD$!"
-  }
-  const userInput2 = {
-    username: "Louder",
-    password: "thanBombs"
-  }
-    userInfo = userInput.password || userInput2.password
+function createLoginTracker(userInfo = {"username" : "", "password": ""}) {
+  //user1Login = createLoginTracker(userInfo)
+  let attemptCount = 0
+  const c_password = userInfo.password
 
-    let attemptCount = 0
-  const user1Login = (passwordAttempt) => {
-    if (userInput.password === passwordAttempt) {
-      console.log("heeloooooo")
+  //for (const password in userInfo){
+  const passwordAttempt = (passwordAttempt = "") => {
+    attemptCount++
+    if (passwordAttempt == c_password){
+      return "Login successful"
     }
-    else if (userInput.password !== passwordAttempt) {
-      console.log("wrng ssttempt again")
-      attemptCount++
+    else if (passwordAttempt != c_password && attemptCount == 1){
+      if (attemptCount == 1){
+        attemptCount++
+      }
+      console.log(attemptCount)
+      return "Attempt 1: Login failed"
     }
+    else if (passwordAttempt != c_password && attemptCount == 2){
+        if (attemptCount == 2){
+        attemptCount++
+      }
+        return "Attempt 2: Login failed"
+      }
+    if (passwordAttempt != c_password && attemptCount == 3){
+      if (attemptCount == 3){
+        attemptCount++
+      }
+      console.log(attemptCount)
+      return "Attempt 3: Login failed"
     }
-      return user1Login("l30PARD$!");
+    else if (attemptCount > 3) {
+      return "Account locked due to too many failed login attempts"
+    }
   }
-function calcFlop(ogprice, discunt) {
-  if(discunt < 0 || discunt > 100) {
-    console.error("worng")
-    return;
-  }
-    let discountAmount = ogprice * (discunt/100);
-    let finalPrice = ogprice - discountAmount
-    return(finalPrice)
+  return passwordAttempt
 }
-console.log(calcFlop(30,15))
-
-console.log(createLoginTracker("l30PARD$!"))
+createLoginTracker(userInfo = {"username": "test", "password": "testpass"})
+//console.log(createLoginTracker("l30PArD$!"))
+    
 
 
 module.exports = {
